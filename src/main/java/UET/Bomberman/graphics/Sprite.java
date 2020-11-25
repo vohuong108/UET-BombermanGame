@@ -1,7 +1,6 @@
 package UET.Bomberman.graphics;
 
 import javafx.scene.image.*;
-import javafx.scene.layout.Pane;
 
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
@@ -26,7 +25,7 @@ public class Sprite {
 	public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, UET.Bomberman.graphics.SpriteSheet.tiles, 16, 16);
 	public static Sprite brick = new Sprite(DEFAULT_SIZE, 7, 0, UET.Bomberman.graphics.SpriteSheet.tiles, 16, 16);
 	public static Sprite wall = new Sprite(DEFAULT_SIZE, 5, 0, UET.Bomberman.graphics.SpriteSheet.tiles, 16, 16);
-	public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, UET.Bomberman.graphics.SpriteSheet.tiles, 14, 14);
+	public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, UET.Bomberman.graphics.SpriteSheet.tiles, 16, 16);
 	
 	/*
 	|--------------------------------------------------------------------------

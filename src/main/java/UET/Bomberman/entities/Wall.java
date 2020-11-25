@@ -1,17 +1,28 @@
 package UET.Bomberman.entities;
 
+import UET.Bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 
 public class Wall extends Entity {
+    private int width = Sprite.SCALED_SIZE;
+    private int height = Sprite.SCALED_SIZE;
 
     public Wall(int x, int y, Image img) {
         super( x, y, img);
     }
 
     @Override
-    public void update(Pane layer, KeyCode event) {
+    public int getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public int getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public void updateUI() {
 
     }
 }
