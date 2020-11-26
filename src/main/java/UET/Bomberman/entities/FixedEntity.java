@@ -3,12 +3,13 @@ package UET.Bomberman.entities;
 import UET.Bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
-public abstract class Enemy extends Character {
+public abstract class FixedEntity extends Entity {
     private int width = Sprite.SCALED_SIZE;
     private int height = Sprite.SCALED_SIZE;
 
-    public Enemy(int x, int y, Image img) {
+    public FixedEntity(int x, int y, Image img) {
         super(x, y, img);
+        this.imageView.relocate(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
     }
 
     @Override
@@ -20,6 +21,4 @@ public abstract class Enemy extends Character {
     public int getHeight() {
         return height;
     }
-
-    protected abstract void changeDirection();
 }

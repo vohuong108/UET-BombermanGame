@@ -14,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import UET.Bomberman.graphics.Sprite;
 import java.util.ArrayList;
 
-public class Bomber extends Entity {
+public class Bomber extends Character {
     private String oldIMG = null;
     private String oldPlayerDead = null;
     private boolean isExist = true;
@@ -23,6 +23,7 @@ public class Bomber extends Entity {
     private int height = 32;
     private int amountBomb = 1;
     private int rangeFlame = 1;
+    private int input;
     private ArrayList<Bomb> bombActive = new ArrayList<>();
 
     public void setExist(boolean exist) {
@@ -46,12 +47,12 @@ public class Bomber extends Entity {
 
     @Override
     public void updateUI() {
-        int input = processInput(DataMapManager.input);
+        this.input = processInput(DataMapManager.input);
 
-        if (input != -1 && isExist) {
-            processPutBomb(input);
-            updatePhysics(input);
-            processPlayerMoveUI(input);
+        if (this.input != -1 && isExist) {
+            processPutBomb(this.input);
+            updatePhysics();
+            processPlayerMoveUI(this.input);
         }
         DataMapManager.playLayer.getChildren().remove(this.imageView);
         this.imageView = new ImageView(this.img);
@@ -65,24 +66,16 @@ public class Bomber extends Entity {
         if (!this.isExist) { processPlayerDied(); }
     }
 
+    /** kiểm tra hướng di chuyển và xử lý. Gọi hàm processMove. */
     @Override
-    public void render() {
-        imageView.relocate(x, y);
-        DataMapManager.playLayer.getChildren().add(imageView);
-    }
-
-    /**
-     * kiểm tra hướng di chuyển và xử lý. Gọi hàm processMove.
-     * @param input hướng di chuyển.
-     */
-    public void updatePhysics(int input) {
-        if (input == 1) {
+    public void updatePhysics() {
+        if (this.input == 1) {
             processMove(-speed, 0);
-        } else if (input == 2) {
+        } else if (this.input == 2) {
             processMove(speed, 0);
-        } else if (input == 3) {
+        } else if (this.input == 3) {
             processMove(0, -speed);
-        } else if (input == 4) {
+        } else if (this.input == 4) {
             processMove(0, speed);
         }
     }
@@ -231,9 +224,7 @@ public class Bomber extends Entity {
         }
     }
 
-    /**
-     * xử lý ăn item.
-     */
+    /** xử lý ăn item. */
     public void processGift() {
         int unitX;
         int unitY;
@@ -296,9 +287,7 @@ public class Bomber extends Entity {
         PlaySound.playSound("putBomb.wav");
     }
 
-    /**
-     * xử lý số lượng đặt bom.
-     */
+    /** xử lý số lượng đặt bom. */
     public void checkAmountBombActive() {
         bombActive.removeIf(bomb -> bomb.isExploded);
     }
@@ -406,13 +395,11 @@ public class Bomber extends Entity {
         return !respone.equals("wall") && !respone.equals("brick") && !respone.equals("bomb");
     }
 
-    /**
-     * xử lý khi người chơi va chạm với enemy.
-     */
+    /** xử lý khi người chơi va chạm với enemy. */
     public void processCollisionEnemy() {
         Rectangle recPlayer = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         for (int i = 1; i < DataMapManager.entities.size(); i++) {
-            Enemy obj = (Enemy)DataMapManager.entities.get(i);
+            Enemy obj = (Enemy) DataMapManager.entities.get(i);
             Rectangle recEnemy = new Rectangle(obj.getX(), obj.getY(), obj.getWidth(), obj.getHeight());
 
             if (recEnemy.overlapArea(recPlayer) != 0) {
@@ -423,9 +410,7 @@ public class Bomber extends Entity {
 
     }
 
-    /**
-     * xử lý UI và âm thanh người chơi chết
-     */
+    /** xử lý UI và âm thanh người chơi chết */
     public void processPlayerDied() {
         if (oldPlayerDead == null) {
             PlaySound.playSound("playerDied.wav");

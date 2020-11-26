@@ -7,9 +7,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Bomb extends Entity {
-    private int width = Sprite.SCALED_SIZE;
-    private int height = Sprite.SCALED_SIZE;
+public class Bomb extends FixedEntity {
     private String oldIMG = null;
     private Flame flame;
     public boolean isExploded = false;
@@ -17,21 +15,6 @@ public class Bomb extends Entity {
     public Bomb(int x, int y, Image img, int rangeFlame) {
         super(x, y, img);
         flame = new Flame(x, y, rangeFlame);
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    @Override
-    public void updateUI() {
-
     }
 
     public void activeBomb() {

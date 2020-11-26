@@ -3,6 +3,7 @@ package UET.Bomberman;
 import UET.Bomberman.controller.SceneController;
 import UET.Bomberman.data.DataMapManager;
 import UET.Bomberman.entities.*;
+import UET.Bomberman.entities.Character;
 import UET.Bomberman.graphics.Sprite;
 
 import javafx.animation.AnimationTimer;
@@ -32,7 +33,7 @@ public class BombermanGame extends Application {
 
     public void renderMap() {
         DataMapManager.stillObjects.forEach(Entity::render);
-        DataMapManager.entities.forEach(Entity::render);
+        DataMapManager.entities.forEach(Character::render);
     }
 
     public void updateUI() {

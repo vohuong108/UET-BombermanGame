@@ -31,7 +31,7 @@ public class Balloon extends Enemy {
         DataMapManager.playLayer.getChildren().add(this.imageView);
     }
 
-    private void updatePhysics() {
+    public void updatePhysics() {
         boolean collision = canMove(this.horizontalSpeed, this.verticalSpeed);
         int changeXEnemy = this.getX() % Sprite.SCALED_SIZE;
         int changeYEnemy = this.getY() % Sprite.SCALED_SIZE;

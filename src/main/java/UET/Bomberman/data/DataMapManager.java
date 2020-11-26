@@ -2,7 +2,9 @@ package UET.Bomberman.data;
 
 import UET.Bomberman.controller.PlaySound;
 import UET.Bomberman.entities.Bomber;
+import UET.Bomberman.entities.Character;
 import UET.Bomberman.entities.Entity;
+import UET.Bomberman.entities.FixedEntity;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -12,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 public class DataMapManager {
-    public static ReadMapData readMapData = new ReadMapData("Level1.txt");
-    public static List<Entity> entities = readMapData.entities;
-    public static List<Entity> stillObjects = readMapData.stillObjects;
+    public static ReadMapData readMapData = new ReadMapData("Level2.txt");
+    public static List<Character> entities = readMapData.entities;
+    public static List<FixedEntity> stillObjects = readMapData.stillObjects;
     public static int levelMap = readMapData.levelMap;
     public static int widthMap = readMapData.widthMap;
     public static int heightMap = readMapData.heightMap;
@@ -25,7 +27,7 @@ public class DataMapManager {
     public static Map<String, String> mapData = readMapData.mapData;
 
     /**Lưu trữ tọa độ của Brick, Item.*/
-    public static Map<String, Entity> mapGift = readMapData.mapGift;
+    public static Map<String, FixedEntity> mapGift = readMapData.mapGift;
 
     public static Clip THREAD_SOUNDTRACK = PlaySound.loopPlaySound("stage.wav");
     public static Pane playLayer = new Pane();

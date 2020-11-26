@@ -3,7 +3,6 @@ package UET.Bomberman.entities;
 import UET.Bomberman.data.DataMapManager;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import UET.Bomberman.graphics.Sprite;
 
 public abstract class Entity {
     protected int x;
@@ -16,7 +15,6 @@ public abstract class Entity {
         this.y = y;
         this.img = img;
         this.imageView = new ImageView(img);
-        imageView.relocate(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
     }
 
     public int getX() {
@@ -31,11 +29,7 @@ public abstract class Entity {
 
     public abstract int getHeight();
 
-    public void render() {
-        DataMapManager.playLayer.getChildren().add(imageView);
-    }
-
-    public abstract void updateUI();
+    public void render() { DataMapManager.playLayer.getChildren().add(imageView); }
 
     public void removeEntity() {
         DataMapManager.entities.remove(this);
